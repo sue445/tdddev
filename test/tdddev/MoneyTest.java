@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class DollarTest {
+public class MoneyTest {
 
 	@Test
 	public void testMultiplication() throws Exception {
@@ -17,16 +17,22 @@ public class DollarTest {
 	public void testEquality() throws Exception {
 		assertTrue(Money.dollar(5).equals(Money.dollar(5)));
 		assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-		assertTrue(new Franc(5).equals(new Franc(5)));
-		assertFalse(new Franc(5).equals(new Franc(6)));
-		assertFalse(new Franc(5).equals(Money.dollar(5)));
+		assertTrue(new Franc(5, null).equals(new Franc(5, null)));
+		assertFalse(new Franc(5, null).equals(new Franc(6, null)));
+		assertFalse(new Franc(5, null).equals(Money.dollar(5)));
 	}
 
 	@Test
 	public void testFrancMultiplication() throws Exception {
-		Franc five = new Franc(5);
-		assertEquals(new Franc(10), five.times(2));
-		assertEquals(new Franc(15), five.times(3));
+		Franc five = new Franc(5, null);
+		assertEquals(new Franc(10, null), five.times(2));
+		assertEquals(new Franc(15, null), five.times(3));
+	}
+
+	@Test
+	public void testCurrency() throws Exception {
+		assertEquals("USD", Money.dollar(1).currency());
+		assertEquals("CHF", Money.franc(1).currency());
 	}
 
 }
