@@ -33,4 +33,9 @@ public class Money {
 		return new Money(amount * multiplier, currency);
 	}
 
+	@Override
+	public String toString() {
+		return amount + " " + currency;
+	}
+
 }
